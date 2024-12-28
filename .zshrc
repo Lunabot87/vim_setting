@@ -112,3 +112,19 @@ source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+alias qtb="docker run -it --rm --shm-size=16G --env DISPLAY=\$DISPLAY --env=\"QT_X11_NO_MITSHM=1\" --platform linux/amd64 -v \"\${PWD}:/home/user/project\"  -v /tmp/.X11-unix:/tmp/.X11-unix:ro qt-6-test \
+    sh -c 'cd project;
+           qmake -project;
+           echo \"CONFIG += c++1z\" >> project.pro;
+           echo \"QT += gui\" >> project.pro;
+           echo \"QT += widgets\" >> project.pro;
+           echo \"QT += core\" >> project.pro;
+		   qmake;
+		   make;
+           ./project'"
+
+alias qtc="rm Makefile project project.pro *.o"
+alias odd="docker run --rm -ti --platform linux/amd64 --net new_bridge -v \"\$PWD:/opt/workspace\" ghcr.io/opendds/opendds:latest-release"
+
+alias vzh="vim ~/.zshrc"
+alias szh="source ~/.zshrc"
